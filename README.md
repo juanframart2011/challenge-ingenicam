@@ -1,6 +1,7 @@
+
 # Challenge Ingenicam
 
-Este proyecto consiste en una aplicación de lista de tareas (To-Do List) dividida en dos partes:
+Este proyecto consiste en una aplicación de lista de tareas (**To-Do List**) dividida en dos partes:
 
 - **API Backend**: Carpeta `api/` (Node.js + Express).
 - **Aplicación Web Frontend**: Carpeta `app-web/` (React + React-Bootstrap).
@@ -9,14 +10,16 @@ Este proyecto consiste en una aplicación de lista de tareas (To-Do List) dividi
 
 ## 📦 Estructura del proyecto
 
+```
 challenge-ingenicam/
-├── api/ # Backend API Express
-├── app-web/ # Frontend React
+├── api/                         # Backend API Express
+├── app-web/                     # Frontend React
 ├── IngenicamTakeHomeAssesment.pdf # Instrucciones del challenge
-├── README.md # Instrucciones
-
+├── README.md                     # Instrucciones
+```
 
 ---
+
 ## 🚀 Instalación y ejecución
 
 ### 1. Backend API (`api/`)
@@ -32,17 +35,18 @@ npm install
 
 # Correr la API
 npm run start
+```
 
-## La API estará disponible en: http://localhost:3000
+- La API estará disponible en: [http://localhost:3000](http://localhost:3000)
+- Importante: Asegúrate que el puerto 3000 esté libre.
 
-## Importante: Asegúrate que el puerto 3000 esté libre.
+---
 
-## 🚀 Instalación y ejecución
-
-### 1. Backend API (`api/`)
+### 2. Aplicación Web Frontend (`app-web/`)
 
 **Pasos para instalar y correr:**
 
+```bash
 # Entrar a la carpeta del frontend
 cd app-web
 
@@ -51,33 +55,68 @@ npm install
 
 # Correr la aplicación
 npm run dev
+```
 
+- La app estará disponible en: [http://localhost:5173](http://localhost:5173)
+- La aplicación web consume la API en `http://localhost:3000`
+
+---
 
 ## 🧪 Pruebas de API usando Postman
-Dentro de la carpeta api/ encontrarás un archivo:
+
+Dentro de la carpeta `api/` encontrarás un archivo:
+
+```
 challenge-ingenicam.postman_collection.json
+```
+
 Este archivo es una colección de Postman lista para probar todos los endpoints de la API.
 
-¿Cómo importar la colección?
-Abre Postman.
+### ¿Cómo importar la colección?
 
-Haz clic en "Import".
+1. Abre **Postman**.
+2. Haz clic en **"Import"**.
+3. Selecciona el archivo `challenge-ingenicam.postman_collection.json` ubicado en la carpeta `api/`.
+4. Postman cargará automáticamente una colección que incluye:
+   - Obtener todas las tareas.
+   - Crear nueva tarea.
+   - Marcar tarea como completada.
+   - Actualizar título de tarea.
+   - Eliminar tarea.
 
-Selecciona el archivo challenge-ingenicam.postman_collection.json que se encuentra en la carpeta api/.
+### ⚡️ Tips:
 
-Postman cargará una colección con los siguientes endpoints:
+- Asegúrate de que la API esté corriendo en `http://localhost:3000` antes de probar.
+- Puedes utilizar la colección de Postman para probar rápidamente todas las funcionalidades del backend.
 
-Obtener todas las tareas.
+---
 
-Crear nueva tarea.
+## 📋 Resumen rápido de la API
 
-Marcar tarea como completada.
+| Método | Endpoint                | Descripción                        |
+|--------|--------------------------|------------------------------------|
+| GET    | `/tasks`                 | Obtener todas las tareas           |
+| POST   | `/tasks`                 | Crear nueva tarea                  |
+| PUT    | `/tasks/:id/complete`    | Marcar tarea como completada        |
+| PUT    | `/tasks/:id/title`       | Actualizar título de la tarea       |
+| DELETE | `/tasks/:id`             | Eliminar tarea                     |
 
-Actualizar título de tarea.
+---
 
-Eliminar tarea.
+## 📅 Consideraciones
 
-⚡️ Tips
-Asegúrate que la API esté corriendo antes de probar con Postman.
+- **Base de datos**: Las tareas se almacenan en memoria (sin persistencia en disco).
+- **CORS**: Configurado para permitir peticiones desde el frontend.
+- **Persistencia**: Al reiniciar el servidor de la API, las tareas se pierden.
 
-La API funciona en http://localhost:3000.
+---
+
+## 💪 Tecnologías utilizadas
+
+- **Backend**: Node.js + Express
+- **Frontend**: React + Vite + React-Bootstrap
+- **Testing API**: Postman
+
+---
+
+✨ Proyecto realizado para el Challenge Ingenicam. ✨
