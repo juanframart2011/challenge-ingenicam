@@ -57,6 +57,25 @@ app.put('/tasks/:id/complete', (req, res) => {
     res.json(task);
 });
 
+// Endpoint para actualizar el título de una tarea
+app.put('/tasks/:id/title', (req, res) => {
+    const { id } = req.params;
+    const { title } = req.body;
+
+    if (!title || title.trim() === '') {
+        return res.status(400).json({ error: 'Valid title is required' });
+    }
+
+    const task = tasks.find(t => t.id === parseInt(id));
+
+    if (!task) {
+        return res.status(404).json({ error: 'Task not found' });
+    }
+
+    task.title = title.trim();
+    res.json(task);
+});
+
 app.use((err, req, res, next) => {
     console.error(err.stack);
     res.status(500).json({ error: 'Something went wrong!' });
