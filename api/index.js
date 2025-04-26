@@ -1,7 +1,9 @@
 const express = require('express');
+const cors = require('cors');
 const app = express();
 const port = 3000;
 
+app.use(cors());
 app.use(express.json()); // Para poder recibir JSON en las peticiones
 
 // Aquí almacenaremos las tareas en memoria
@@ -11,6 +13,19 @@ let currentId = 1;
 // Endpoint para obtener todas las tareas
 app.get('/tasks', (req, res) => {
     res.json(tasks);
+});
+
+// Endpoint para eliminar una tarea
+app.delete('/tasks/:id', (req, res) => {
+    const { id } = req.params;
+    const index = tasks.findIndex(t => t.id === parseInt(id));
+
+    if (index === -1) {
+        return res.status(404).json({ error: 'Task not found' });
+    }
+
+    const deletedTask = tasks.splice(index, 1);
+    res.json(deletedTask[0]);
 });
 
 // Endpoint para crear una nueva tarea
@@ -40,6 +55,11 @@ app.put('/tasks/:id/complete', (req, res) => {
 
     task.completed = true;
     res.json(task);
+});
+
+app.use((err, req, res, next) => {
+    console.error(err.stack);
+    res.status(500).json({ error: 'Something went wrong!' });
 });
 
 // Levantamos el servidor
